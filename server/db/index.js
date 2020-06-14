@@ -1,10 +1,52 @@
+const Sequelize = require('sequelize');
 const db = require('./db')
-// require each of your models here...
 
-// ...and give them some nice associations here!
+
+//Models - Album & Artist & Song 
+
+const Album = db.define('album', {
+  name: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  artworkURL: {
+    type: Sequelize.STRING,
+    defaultValue: "default-album.jpg"
+  }
+});
+
+const Artist = db.define('artist', {
+  name: {
+    type: Sequelize.STRING,
+    allowNull: false
+  }
+});
+
+const Song = db.define('song', {
+  name: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  audioUrl: {
+    type: Sequelize.STRING,
+  },
+  genre: {
+    type: Sequelize.STRING,
+  }
+})
+
+//Association
+Album.hasMany(Song)
+Song.belongsTo(Album)
+Artist.hasMany(Song)
+Song.belongsTo(Artist)
+Artist.hasMany(Album)
+Album.belongsTo(Artist)
+
 
 module.exports = {
   db,
-  // Include your models in your module.exports as well!
-  // The seed file expects to find them there!
+  Album,
+  Artist,
+  Song
 }
