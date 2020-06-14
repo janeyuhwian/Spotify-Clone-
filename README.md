@@ -2,10 +2,12 @@
 
 ### Built With
 
+* JavaScript
+* Node.JS
 * React
 * PostgresSQL
 * Sequelize
-* Express.JS
+* Express.JS (REST APIs)
 * MusicMetaData API
 
 ### Visit the deployed App
