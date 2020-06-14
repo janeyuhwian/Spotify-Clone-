@@ -1,6 +1,4 @@
-# Spotify Clone 
-
-## Description 
+# Spotify Clone  
 
 ### Built With
 
