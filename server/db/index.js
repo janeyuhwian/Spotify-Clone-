@@ -43,8 +43,6 @@ Song.belongsTo(Artist)
 Artist.hasMany(Album)
 Album.belongsTo(Artist)
 
-//Exports
-
 module.exports = {
   db,
   Album,
