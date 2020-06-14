@@ -1,8 +1,8 @@
 # Spotify
 
-## Teck Stack 
+## Description 
 
-### MacOS/Linux
+### Tech stack 
 
 * `npm install`
 * `npm start`
