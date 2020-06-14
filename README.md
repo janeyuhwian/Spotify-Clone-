@@ -1,6 +1,6 @@
-# Juke
+# Spotify
 
-## Setup
+## Teck Stack 
 
 ### MacOS/Linux
 
