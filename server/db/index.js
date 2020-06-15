@@ -9,7 +9,7 @@ const Album = db.define('album', {
     type: Sequelize.STRING,
     allowNull: false
   },
-  artworkURL: {
+  artworkUrl: {
     type: Sequelize.STRING,
     defaultValue: "default-album.jpg"
   }

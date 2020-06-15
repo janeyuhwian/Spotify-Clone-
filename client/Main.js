@@ -2,36 +2,24 @@ import React from 'react'
 import Sidebar from './Sidebar'
 import Player from './Player'
 import AllAlbums from './AllAlbums'
-
-const dummyData = [
-  {
-    "id": 1,
-    "name": "No Dummy",
-    "artworkUrl": "default-album.jpg",
-    "artistId": 1,
-    "artist": {
-      "id": 1,
-      "name": "The Crash Test Dummies"
-    }
-  },
-  {
-    "id": 2,
-    "name": "I React to State",
-    "artworkUrl": "default-album.jpg",
-    "artistId": 1,
-    "artist": {
-      "id": 1,
-      "name": "The Crash Test Dummies"
-    }
-  }
-]
+import axios from 'axios'
 
 export default class Main extends React.Component {
   constructor () {
     super()
 
     this.state = {
-      albums : dummyData
+      albums : []
+    }
+  }
+  async componentDidMount() {
+    try {
+      const response = await axios.get('/api/albums')
+      this.setState({
+        albums: response.data
+      })
+    } catch(error) {
+      console.error('Theres error!')
     }
   }
 
