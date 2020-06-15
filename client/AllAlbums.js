@@ -1,24 +1,20 @@
-import React from 'react'
+import React from 'react';
+import Album from './Album'
 
-export default function AllAlbums() {
+const AllAlbums = (props) => {
+
     return (
-        <div className='container'>
-            <div id='albums' className='row wrap'>
-            <div className='album'>
-              <a>
-                <img src='default-album.jpg' />
-                <p>ALBUM 1</p>
-                <small>Artist Name</small>
-              </a>
-            </div>
-            <div className='album'>
-              <a>
-                <img src='default-album.jpg' />
-                <p>ALBUM 2</p>
-                <small>Artist Name</small>
-              </a>
-            </div>
-          </div>
+        <div id='albums' className='row wrap'>
+            {props.albums.map(album => {
+                return <Album
+                    key={album.id}
+                    artworkUrl={album.artworkUrl}
+                    albumName={album.name}
+                    artistName={album.artist.name}
+                />
+            })}
         </div>
     )
 }
+
+export default AllAlbums
