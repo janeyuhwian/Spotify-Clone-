@@ -1,6 +1,6 @@
 import React from 'react'
 
-const SingleAlbum = () => {
+const SingleAlbum = (props) => {
     return (
         <div>
             <div id='single-album' className='column'>
@@ -8,7 +8,7 @@ const SingleAlbum = () => {
               <a>
                 <img src='default-album.jpg' />
                 <p>ALBUM 2</p>
-                <small>Artist Name</small>
+                <small>{props.album.name}</small>
               </a>
             </div>
             <table id='songs'>
@@ -49,3 +49,4 @@ const SingleAlbum = () => {
 }
 
 export default SingleAlbum
+
