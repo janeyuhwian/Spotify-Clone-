@@ -3,6 +3,7 @@ import Sidebar from './Sidebar'
 import Player from './Player'
 import AllAlbums from './AllAlbums'
 import axios from 'axios'
+import SingleAlbum from './SingleAlbum'
 
 const dummyData = [
   {
@@ -77,6 +78,7 @@ export default class Main extends React.Component {
         <Sidebar />
         <div className='container'>
           <AllAlbums albums={this.state.albums} />
+          <SingleAlbum />
         </div>
         <Player />
       </div>
