@@ -13,7 +13,7 @@ const AllAlbums = (props) => {
             className="album clickable"
             key={album.id}
           >
-            <a onClick={() => {selectAlbum(album)}}>
+            <a onClick={() => {selectAlbum(album.id)}}>
               <img src={album.artworkUrl} />
               <p>{album.name}</p>
               <small>{album.artist.name}</small>

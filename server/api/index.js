@@ -3,7 +3,7 @@ const {db, Album, Artist, Song} = require ('../db/index')
 
 router.get('/albums', async (req, res, next) => {
     const response = await Album.findAll({
-        include: [{model: Artist}]
+        include: [Artist]
     })
     res.json(response)
 })
@@ -13,9 +13,10 @@ router.get('/albums/:albumId', async (req, res, next) => {
         where: {
             id: req.params.albumId
         },
-        include: [{model: Artist}, {model: Song}]
+        include: [Artist, {model: Song}]
     })
     res.json(response)
 })
+
 
 module.exports = router

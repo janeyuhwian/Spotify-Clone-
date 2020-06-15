@@ -49,4 +49,3 @@ const SingleAlbum = (props) => {
 }
 
 export default SingleAlbum
-
