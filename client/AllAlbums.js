@@ -1,21 +1,27 @@
-import React from 'react';
-import Album from './Album'
+import React from "react";
 
 const AllAlbums = (props) => {
 
-    return (
-        <div id='albums' className='row wrap'>
-            {props.albums.map(album => {
-                return <Album
-                    key={album.id}
-                    artworkUrl={album.artworkUrl}
-                    albumName={album.name}
-                    artistName={album.artist.name}
-                />
-            })}
-        </div>
-    )
-}
+  const albums = props.albums;
 
-export default AllAlbums
+  return (
+    <div id="albums" className="row wrap">
+      {albums.map(album => {
+        return (
+          <div
+            className="album clickable"
+            key={album.id}
+          >
+            <a>
+              <img src={album.artworkUrl} />
+              <p>{album.name}</p>
+              <small>{album.artist.name}</small>
+            </a>
+          </div>
+        );
+      })}
+    </div>
+  );
+};
 
+export default AllAlbums;

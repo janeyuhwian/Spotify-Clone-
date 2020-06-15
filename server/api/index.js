@@ -8,10 +8,10 @@ router.get('/albums', async (req, res, next) => {
     res.json(response)
 })
 
-router.get('/albums/:albumid', async (req, res, next) => {
+router.get('/albums/:albumId', async (req, res, next) => {
     const response = await Album.findAll({
         where: {
-            id: req.params.albumid
+            id: req.params.albumId
         },
         include: [{model: Artist}, {model: Song}]
     })
