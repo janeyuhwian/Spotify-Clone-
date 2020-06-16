@@ -5,7 +5,7 @@ import AllAlbums from './AllAlbums'
 import axios from 'axios'
 import SingleAlbum from './SingleAlbum'
 
-const audio = document.createElement('audio');
+// const audio = document.createElement('audio');
 
 export default class Main extends React.Component {
   constructor(props) {
@@ -14,10 +14,14 @@ export default class Main extends React.Component {
     this.state = {
       albums: [],
       selectedAlbum: {},
+      audio: document.createElement('audio'),
+      currentSong: {},
     }
     this.selectAlbum = this.selectAlbum.bind(this)
     this.deselectAlbum = this.deselectAlbum.bind(this)
     this.start = this.start.bind(this)
+    this.pause = this.pause.bind(this);
+    this.play = this.play.bind(this);
   }
 
   async componentDidMount() {
@@ -46,10 +50,24 @@ export default class Main extends React.Component {
     this.setState({selectedAlbum: {}})
   }
 
-  start() {
-    audio.src = 'https://learndotresources.s3.amazonaws.com/workshop/5616dbe5a561920300b10cd7/Dexter_Britain_-_03_-_The_Stars_Are_Out_Interlude.mp3';
+  start(index){
+    console.log('!!!!!', this.state.selectedAlbum)
+    const audio = document.createElement('audio');
+    audio.src = this.state.selectedAlbum.songs[index].audioUrl;
     audio.load();
-    audio.play(); 
+    audio.play();
+    this.setState({
+      currentSong: this.state.selectedAlbum.songs[index],
+      audio: audio,
+    })
+  }
+
+  pause(){
+    this.state.audio.pause();
+  }
+
+  play(){
+    this.state.audio.play();
   }
 
   render() {
@@ -58,10 +76,10 @@ export default class Main extends React.Component {
         <Sidebar deselectAlbum={this.deselectAlbum} />
         <div className="container">
             {this.state.selectedAlbum.id 
-            ? <SingleAlbum selectedAlbum={this.state.selectedAlbum} start={this.start}/>
+            ? <SingleAlbum selectedAlbum={this.state.selectedAlbum} start={this.start} currentSong={this.state.currentSong}/>
             : <AllAlbums albums={this.state.albums} selectAlbum={this.selectAlbum} />}
         </div>
-        <Player />
+        <Player handleClick = {this.state.audio.paused ? this.play : this.pause}/>
       </div>
     )
   }
