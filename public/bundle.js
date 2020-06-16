@@ -218,7 +218,6 @@ var Main = function (_React$Component) {
     _this.start = _this.start.bind(_this);
     _this.pause = _this.pause.bind(_this);
     _this.play = _this.play.bind(_this);
-    _this.next = _this.next.bind(_this);
     return _this;
   }
 
@@ -336,25 +335,25 @@ var Main = function (_React$Component) {
     value: function play() {
       this.state.audio.play();
     }
-  }, {
-    key: 'next',
-    value: function next() {
-      var album = this.state.selectedAlbum.songs;
-      console.log('this.state.currentSong', this.state.currentSong);
-      console.log('album', album);
-      var result = void 0;
-      for (var i = 0; i < album.length; i++) {
-        if (album[i] === this.state.currentSong) {
-          if (i + 1 >= album.length) {
-            result = album[0];
-          } else {
-            result = album[i + 1];
-          }
-        }
-      }
-      var url = result.audioUrl;
-      this.start(url, result);
-    }
+
+    // next() {
+    //   const album = this.state.selectedAlbum.songs;
+    //   console.log('this.state.currentSong', this.state.currentSong)
+    //   console.log('album', album)
+    //   let result;
+    //   for (let i = 0; i < album.length; i++) {
+    //     if (album[i] === this.state.currentSong) {
+    //       if (i + 1 >= album.length) {
+    //         result = album[0];
+    //       } else {
+    //         result = album[i + 1];
+    //       }
+    //     }
+    //   }
+    //   const url = result.audioUrl;
+    //   this.start(url, result);
+    // }
+
   }, {
     key: 'render',
     value: function render() {
@@ -368,8 +367,7 @@ var Main = function (_React$Component) {
           this.state.selectedAlbum.id ? _react2.default.createElement(_SingleAlbum2.default, { selectedAlbum: this.state.selectedAlbum, start: this.start, currentSong: this.state.currentSong }) : _react2.default.createElement(_AllAlbums2.default, { albums: this.state.albums, selectAlbum: this.selectAlbum })
         ),
         _react2.default.createElement(_Player2.default, {
-          handleClick: this.state.audio.paused ? this.play : this.pause,
-          next: this.next
+          handleClick: this.state.audio.paused ? this.play : this.pause
         })
       );
     }
@@ -415,25 +413,11 @@ function Player(props) {
         { className: 'row center' },
         _react2.default.createElement('i', { className: 'fa fa-step-backward' }),
         _react2.default.createElement('i', { className: 'fa fa-pause-circle', onClick: props.handleClick }),
-        _react2.default.createElement('i', { className: 'fa fa-step-forward', onClick: props.next })
+        _react2.default.createElement('i', { className: 'fa fa-step-forward' })
       )
     )
   );
-} // import React from 'react'
-
-// export default function Player(props) {
-//     return (
-//         <div id='player-container'>
-//         <div id='player-controls'>
-//           <div className='row center'>
-//             <i className='fa fa-step-backward' ></i>
-//             <i className='fa fa-pause-circle' onClick={props.handleClick}></i>
-//             <i className='fa fa-step-forward' ></i>
-//           </div>
-//         </div>
-//       </div>
-//     )
-// }
+}
 
 /***/ }),
 

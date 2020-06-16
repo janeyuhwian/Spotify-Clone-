@@ -22,7 +22,6 @@ export default class Main extends React.Component {
     this.start = this.start.bind(this)
     this.pause = this.pause.bind(this);
     this.play = this.play.bind(this);
-    this.next = this.next.bind(this);
   }
 
 
@@ -72,23 +71,23 @@ export default class Main extends React.Component {
     this.state.audio.play();
   }
 
-  next() {
-    const album = this.state.selectedAlbum.songs;
-    console.log('this.state.currentSong', this.state.currentSong)
-    console.log('album', album)
-    let result;
-    for (let i = 0; i < album.length; i++) {
-      if (album[i] === this.state.currentSong) {
-        if (i + 1 >= album.length) {
-          result = album[0];
-        } else {
-          result = album[i + 1];
-        }
-      }
-    }
-    const url = result.audioUrl;
-    this.start(url, result);
-  }
+  // next() {
+  //   const album = this.state.selectedAlbum.songs;
+  //   console.log('this.state.currentSong', this.state.currentSong)
+  //   console.log('album', album)
+  //   let result;
+  //   for (let i = 0; i < album.length; i++) {
+  //     if (album[i] === this.state.currentSong) {
+  //       if (i + 1 >= album.length) {
+  //         result = album[0];
+  //       } else {
+  //         result = album[i + 1];
+  //       }
+  //     }
+  //   }
+  //   const url = result.audioUrl;
+  //   this.start(url, result);
+  // }
 
   render() {
     return (
@@ -101,7 +100,6 @@ export default class Main extends React.Component {
         </div>
         <Player 
         handleClick = {this.state.audio.paused ? this.play : this.pause} 
-        next={this.next}
         />
       </div>
     )
