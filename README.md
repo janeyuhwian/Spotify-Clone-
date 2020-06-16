@@ -10,7 +10,7 @@
 * Express.JS (REST APIs)
 * MusicMetaData API
 
-To run
+### To run
 ```
 npm run seed
 npm run start
