@@ -5,28 +5,28 @@ import AllAlbums from './AllAlbums'
 import axios from 'axios'
 import SingleAlbum from './SingleAlbum'
 
-const dummyData = [
-  {
-    "id": 1,
-    "name": "No Dummy",
-    "artworkUrl": "default-album.jpg",
-    "artistId": 1,
-    "artist": {
-      "id": 1,
-      "name": "The Crash Test Dummies"
-    }
-  },
-  {
-    "id": 2,
-    "name": "I React to State",
-    "artworkUrl": "default-album.jpg",
-    "artistId": 1,
-    "artist": {
-      "id": 1,
-      "name": "The Crash Test Dummies"
-    }
-  }
-]
+// const dummyData = [
+//   {
+//     "id": 1,
+//     "name": "No Dummy",
+//     "artworkUrl": "default-album.jpg",
+//     "artistId": 1,
+//     "artist": {
+//       "id": 1,
+//       "name": "The Crash Test Dummies"
+//     }
+//   },
+//   {
+//     "id": 2,
+//     "name": "I React to State",
+//     "artworkUrl": "default-album.jpg",
+//     "artistId": 1,
+//     "artist": {
+//       "id": 1,
+//       "name": "The Crash Test Dummies"
+//     }
+//   }
+// ]
 
 export default class Main extends React.Component {
   constructor() {
@@ -37,6 +37,7 @@ export default class Main extends React.Component {
       selectedAlbum: {}
     }
     this.selectAlbum = this.selectAlbum.bind(this)
+    this.deselectAlbum = this.deselectAlbum.bind(this)
   }
 
   async componentDidMount() {
@@ -68,7 +69,7 @@ export default class Main extends React.Component {
   render() {
     return (
       <div id='main' className='row container'>
-        <Sidebar />
+        <Sidebar deselectAlbum={this.deselectAlbum} />
         <div className="container">
             {this.state.selectedAlbum.id 
             ? <SingleAlbum selectedAlbum={this.state.selectedAlbum}/>
