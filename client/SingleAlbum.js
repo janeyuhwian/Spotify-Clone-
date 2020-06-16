@@ -17,11 +17,11 @@ const SingleAlbum = (props) => {
                 <tr className='gray'>
                   <td />
                   <td>Name</td>
-                  <td>Artist</td>
+                  <td>Artist</td> 
                   <td>Genre</td>
                 </tr>
 
-                 {props.selectedAlbum.songs && props.selectedAlbum.songs.map(song  => {
+                 {props.selectedAlbum.songs.map(song  => {
                      return (
                         <tr key={song.id}>
                         <td><i className='fa fa-play-circle' /></td>

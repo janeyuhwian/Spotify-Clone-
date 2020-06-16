@@ -70,9 +70,9 @@ export default class Main extends React.Component {
       <div id='main' className='row container'>
         <Sidebar />
         <div className="container">
-          <AllAlbums
-            albums={this.state.albums} selectAlbum={this.selectAlbum} />
-          <SingleAlbum selectedAlbum={this.state.selectedAlbum}/> 
+            {this.state.selectedAlbum.id 
+            ? <SingleAlbum selectedAlbum={this.state.selectedAlbum}/>
+            : <AllAlbums albums={this.state.albums} selectAlbum={this.selectAlbum} />}
         </div>
         <Player />
       </div>
