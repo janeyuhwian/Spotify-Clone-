@@ -55,7 +55,7 @@ export default class Main extends React.Component {
       const response = await axios.get(`/api/albums/${albumId}`);
       const album = response.data;
       this.setState({ selectedAlbum: album});
-      console.log(album)
+      // console.log('THIS IS ALBUM', album)
     } catch(error) {
       console.error(error.stack)
     }
@@ -65,26 +65,6 @@ export default class Main extends React.Component {
     this.setState({selectedAlbum: {}})
   }
 
-  // render() {
-  //   return (
-  //     <div id='main' className='row container'>
-  //       <Sidebar deselectAlbum={this.deselectAlbum} />
-  //       <div className="container">
-  //           {this.state.selectedAlbum.id 
-  //           ? <SingleAlbum selectedAlbum={this.state.selectedAlbum}/> &&
-  //           <Songs
-  //           playSong={this.playSong}
-  //           selectedAlbum={this.state.selectedAlbum}
-  //           currentSong={this.state.currentSong}
-  //           songPlaying={this.state.songPlaying}
-  //           />
-  //         : <AllAlbums albums={this.state.albums} selectAlbum={this.selectAlbum} />}
-  //       </div>
-  //       <Player />
-  //     </div>
-  //   )
-  // }
-
   render() {
     return (
       <div id='main' className='row container'>
@@ -92,12 +72,11 @@ export default class Main extends React.Component {
         <div className="container">
           <AllAlbums
             albums={this.state.albums} selectAlbum={this.selectAlbum} />
-          <SingleAlbum album={this.state.selectedAlbum}/>
+          <SingleAlbum selectedAlbum={this.state.selectedAlbum}/> 
         </div>
         <Player />
       </div>
     )
   }
 }
-
 

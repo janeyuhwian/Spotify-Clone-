@@ -13,10 +13,13 @@ router.get('/albums/:albumId', async (req, res, next) => {
         where: {
             id: req.params.albumId
         },
-        include: [Artist, {model: Song}]
+        include: [{model: Artist}, {model: Song}]
     })
-    res.json(response)
+    res.json(response[0])
 })
+
+
+
 
 
 module.exports = router
