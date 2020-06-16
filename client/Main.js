@@ -5,39 +5,19 @@ import AllAlbums from './AllAlbums'
 import axios from 'axios'
 import SingleAlbum from './SingleAlbum'
 
-// const dummyData = [
-//   {
-//     "id": 1,
-//     "name": "No Dummy",
-//     "artworkUrl": "default-album.jpg",
-//     "artistId": 1,
-//     "artist": {
-//       "id": 1,
-//       "name": "The Crash Test Dummies"
-//     }
-//   },
-//   {
-//     "id": 2,
-//     "name": "I React to State",
-//     "artworkUrl": "default-album.jpg",
-//     "artistId": 1,
-//     "artist": {
-//       "id": 1,
-//       "name": "The Crash Test Dummies"
-//     }
-//   }
-// ]
+const audio = document.createElement('audio');
 
 export default class Main extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
 
     this.state = {
       albums: [],
-      selectedAlbum: {}
+      selectedAlbum: {},
     }
     this.selectAlbum = this.selectAlbum.bind(this)
     this.deselectAlbum = this.deselectAlbum.bind(this)
+    this.start = this.start.bind(this)
   }
 
   async componentDidMount() {
@@ -66,13 +46,19 @@ export default class Main extends React.Component {
     this.setState({selectedAlbum: {}})
   }
 
+  start() {
+    audio.src = 'https://learndotresources.s3.amazonaws.com/workshop/5616dbe5a561920300b10cd7/Dexter_Britain_-_03_-_The_Stars_Are_Out_Interlude.mp3';
+    audio.load();
+    audio.play(); 
+  }
+
   render() {
     return (
       <div id='main' className='row container'>
         <Sidebar deselectAlbum={this.deselectAlbum} />
         <div className="container">
             {this.state.selectedAlbum.id 
-            ? <SingleAlbum selectedAlbum={this.state.selectedAlbum}/>
+            ? <SingleAlbum selectedAlbum={this.state.selectedAlbum} start={this.start}/>
             : <AllAlbums albums={this.state.albums} selectAlbum={this.selectAlbum} />}
         </div>
         <Player />
