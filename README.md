@@ -16,6 +16,5 @@ npm run seed
 npm run start
 ```
 
-### Visit the deployed App
 
 
