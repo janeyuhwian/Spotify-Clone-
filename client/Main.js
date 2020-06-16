@@ -5,7 +5,7 @@ import AllAlbums from './AllAlbums'
 import axios from 'axios'
 import SingleAlbum from './SingleAlbum'
 
-// const audio = document.createElement('audio');
+const audio = document.createElement('audio');
 
 export default class Main extends React.Component {
   constructor(props) {
@@ -22,16 +22,19 @@ export default class Main extends React.Component {
     this.start = this.start.bind(this)
     this.pause = this.pause.bind(this);
     this.play = this.play.bind(this);
+    this.next = this.next.bind(this);
   }
+
 
   async componentDidMount() {
     try {
-      const response = await axios.get('/api/albums')
-      this.setState({
-        albums: response.data
-      })
+    const response = await axios.get("/api/albums");
+    this.setState({ albums: response.data });
+    audio.addEventListener("ended", () => {
+      this.nextSong(); // or some other way to go to the next song
+    });
     } catch (error) {
-      console.error('Theres error!')
+      console.log('Theres error!')
     }
   }
 
@@ -40,7 +43,6 @@ export default class Main extends React.Component {
       const response = await axios.get(`/api/albums/${albumId}`);
       const album = response.data;
       this.setState({ selectedAlbum: album});
-      // console.log('THIS IS ALBUM', album)
     } catch(error) {
       console.error(error.stack)
     }
@@ -51,7 +53,7 @@ export default class Main extends React.Component {
   }
 
   start(index){
-    console.log('!!!!!', this.state.selectedAlbum)
+    console.log('audioUrl', this.state.selectedAlbum.songs[index].audioUrl)
     const audio = document.createElement('audio');
     audio.src = this.state.selectedAlbum.songs[index].audioUrl;
     audio.load();
@@ -70,6 +72,24 @@ export default class Main extends React.Component {
     this.state.audio.play();
   }
 
+  next() {
+    const album = this.state.selectedAlbum.songs;
+    console.log('this.state.currentSong', this.state.currentSong)
+    console.log('album', album)
+    let result;
+    for (let i = 0; i < album.length; i++) {
+      if (album[i] === this.state.currentSong) {
+        if (i + 1 >= album.length) {
+          result = album[0];
+        } else {
+          result = album[i + 1];
+        }
+      }
+    }
+    const url = result.audioUrl;
+    this.start(url, result);
+  }
+
   render() {
     return (
       <div id='main' className='row container'>
@@ -79,7 +99,10 @@ export default class Main extends React.Component {
             ? <SingleAlbum selectedAlbum={this.state.selectedAlbum} start={this.start} currentSong={this.state.currentSong}/>
             : <AllAlbums albums={this.state.albums} selectAlbum={this.selectAlbum} />}
         </div>
-        <Player handleClick = {this.state.audio.paused ? this.play : this.pause}/>
+        <Player 
+        handleClick = {this.state.audio.paused ? this.play : this.pause} 
+        next={this.next}
+        />
       </div>
     )
   }

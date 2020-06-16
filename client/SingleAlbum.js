@@ -3,8 +3,6 @@ import React from 'react'
 const SingleAlbum = (props) => {
     // console.log('props???????',props)
 
-
-
     return (
         <div>
             <div id='single-album' className='column'>
@@ -27,7 +25,7 @@ const SingleAlbum = (props) => {
 
                  {props.selectedAlbum.songs.map((song, index)  => {
                      return (
-                        <tr key={song.id}>
+                        <tr key={song.id} >
                         <td><i className='fa fa-play-circle' onClick={() => props.start(index)}/></td>
                         <td>{index + 1}</td>
                         <td>{song.name}</td>
