@@ -1,4 +1,5 @@
 # Spotify Clone  
+![img](spotifyclone.gif)
 
 ### Built With
 
@@ -15,6 +16,6 @@
 npm run seed
 npm run start
 ```
-![img](spotifyclone.gif)
+
 
 
