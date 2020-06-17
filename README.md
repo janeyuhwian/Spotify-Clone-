@@ -10,6 +10,11 @@
 * Express.JS (REST APIs)
 * MusicMetaData API
 
-### Visit the deployed App
+### To run
+```
+npm run seed
+npm run start
+```
+
 
 
