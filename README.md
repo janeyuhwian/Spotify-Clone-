@@ -15,6 +15,6 @@
 npm run seed
 npm run start
 ```
-
+![img](spotifyclone.gif)
 
 
