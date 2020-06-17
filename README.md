@@ -1,5 +1,5 @@
 # Spotify Clone  
-![img](spotifyclone.gif)
+![img](spotify-clone.gif)
 
 ### Built With
 
