@@ -23,7 +23,7 @@ export default class Main extends React.Component {
     this.start = this.start.bind(this)
     this.pause = this.pause.bind(this);
     this.play = this.play.bind(this);
-    this.next = this.next.bind(this)
+    // this.next = this.next.bind(this)
   }
 
 

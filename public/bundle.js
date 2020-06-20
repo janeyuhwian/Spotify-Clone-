@@ -219,7 +219,7 @@ var Main = function (_React$Component) {
     _this.start = _this.start.bind(_this);
     _this.pause = _this.pause.bind(_this);
     _this.play = _this.play.bind(_this);
-    _this.next = _this.next.bind(_this);
+    // this.next = this.next.bind(this)
     return _this;
   }
 
