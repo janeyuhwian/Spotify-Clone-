@@ -211,13 +211,15 @@ var Main = function (_React$Component) {
       albums: [],
       selectedAlbum: {},
       audio: document.createElement('audio'),
-      currentSong: {}
+      currentSong: {},
+      isPlaying: false
     };
     _this.selectAlbum = _this.selectAlbum.bind(_this);
     _this.deselectAlbum = _this.deselectAlbum.bind(_this);
     _this.start = _this.start.bind(_this);
     _this.pause = _this.pause.bind(_this);
     _this.play = _this.play.bind(_this);
+    _this.next = _this.next.bind(_this);
     return _this;
   }
 
@@ -315,8 +317,7 @@ var Main = function (_React$Component) {
   }, {
     key: 'start',
     value: function start(index) {
-      console.log('audioUrl', this.state.selectedAlbum.songs[index].audioUrl);
-      var audio = document.createElement('audio');
+      console.log('audio', audio.src);
       audio.src = this.state.selectedAlbum.songs[index].audioUrl;
       audio.load();
       audio.play();
@@ -337,21 +338,9 @@ var Main = function (_React$Component) {
     }
 
     // next() {
-    //   const album = this.state.selectedAlbum.songs;
-    //   console.log('this.state.currentSong', this.state.currentSong)
-    //   console.log('album', album)
-    //   let result;
-    //   for (let i = 0; i < album.length; i++) {
-    //     if (album[i] === this.state.currentSong) {
-    //       if (i + 1 >= album.length) {
-    //         result = album[0];
-    //       } else {
-    //         result = album[i + 1];
-    //       }
-    //     }
-    //   }
-    //   const url = result.audioUrl;
-    //   this.start(url, result);
+    //   console.log('audioUrl', audioUrl)
+    //   let nextSong = this.state.currentSong + 1
+    //   this.isPlaying(this.state.selectedAlbum.songs[nextSong - 1].audioUrl, nextSong)
     // }
 
   }, {
@@ -367,7 +356,8 @@ var Main = function (_React$Component) {
           this.state.selectedAlbum.id ? _react2.default.createElement(_SingleAlbum2.default, { selectedAlbum: this.state.selectedAlbum, start: this.start, currentSong: this.state.currentSong }) : _react2.default.createElement(_AllAlbums2.default, { albums: this.state.albums, selectAlbum: this.selectAlbum })
         ),
         _react2.default.createElement(_Player2.default, {
-          handleClick: this.state.audio.paused ? this.play : this.pause
+          handleClick: this.state.audio.paused ? this.play : this.pause,
+          next: this.next
         })
       );
     }
@@ -413,7 +403,9 @@ function Player(props) {
         { className: 'row center' },
         _react2.default.createElement('i', { className: 'fa fa-step-backward' }),
         _react2.default.createElement('i', { className: 'fa fa-pause-circle', onClick: props.handleClick }),
-        _react2.default.createElement('i', { className: 'fa fa-step-forward' })
+        _react2.default.createElement('i', { className: 'fa fa-step-forward', onClick: function onClick() {
+            return props.next();
+          } })
       )
     )
   );

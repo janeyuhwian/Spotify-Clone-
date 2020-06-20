@@ -7,7 +7,7 @@ export default function Player(props) {
           <div className='row center'>
             <i className='fa fa-step-backward' ></i>
             <i className='fa fa-pause-circle' onClick={props.handleClick}></i>
-            <i className='fa fa-step-forward' ></i>
+            <i className='fa fa-step-forward' onClick={() =>props.next()} ></i>
           </div>
         </div>
       </div>

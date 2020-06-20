@@ -16,12 +16,14 @@ export default class Main extends React.Component {
       selectedAlbum: {},
       audio: document.createElement('audio'),
       currentSong: {},
+      isPlaying: false, 
     }
     this.selectAlbum = this.selectAlbum.bind(this)
     this.deselectAlbum = this.deselectAlbum.bind(this)
     this.start = this.start.bind(this)
     this.pause = this.pause.bind(this);
     this.play = this.play.bind(this);
+    this.next = this.next.bind(this)
   }
 
 
@@ -52,8 +54,7 @@ export default class Main extends React.Component {
   }
 
   start(index){
-    console.log('audioUrl', this.state.selectedAlbum.songs[index].audioUrl)
-    const audio = document.createElement('audio');
+    console.log('audio', audio.src)
     audio.src = this.state.selectedAlbum.songs[index].audioUrl;
     audio.load();
     audio.play();
@@ -72,21 +73,9 @@ export default class Main extends React.Component {
   }
 
   // next() {
-  //   const album = this.state.selectedAlbum.songs;
-  //   console.log('this.state.currentSong', this.state.currentSong)
-  //   console.log('album', album)
-  //   let result;
-  //   for (let i = 0; i < album.length; i++) {
-  //     if (album[i] === this.state.currentSong) {
-  //       if (i + 1 >= album.length) {
-  //         result = album[0];
-  //       } else {
-  //         result = album[i + 1];
-  //       }
-  //     }
-  //   }
-  //   const url = result.audioUrl;
-  //   this.start(url, result);
+  //   console.log('audioUrl', audioUrl)
+  //   let nextSong = this.state.currentSong + 1
+  //   this.isPlaying(this.state.selectedAlbum.songs[nextSong - 1].audioUrl, nextSong)
   // }
 
   render() {
@@ -100,6 +89,7 @@ export default class Main extends React.Component {
         </div>
         <Player 
         handleClick = {this.state.audio.paused ? this.play : this.pause} 
+        next={this.next}
         />
       </div>
     )
