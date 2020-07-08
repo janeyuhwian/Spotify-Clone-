@@ -1,4 +1,4 @@
-# Spotify Clone  
+# Juke  
 ![img](spotify-clone.gif)
 
 ### Built With
